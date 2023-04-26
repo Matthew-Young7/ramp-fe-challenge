@@ -10,7 +10,6 @@ export const InputCheckbox: InputCheckboxComponent = ({ id, checked = false, dis
     const changed = !isChecked
     setIsChecked(changed)
     onChange(changed)
-    console.log("handleToggle called")
   }
 
   return (

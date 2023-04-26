@@ -23,12 +23,9 @@ export function usePaginatedTransactions(
     )
 
     setPaginatedTransactions((previousResponse) => {
-      console.log("previous response: ", previousResponse)
-      console.log("response: ", response)
       if (response === null) {
         return previousResponse
       }
-      console.log("response: ", response)
       const newData = response.data
       const nextPage = response.nextPage
       if (nextPage === null) {
