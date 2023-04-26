@@ -9,8 +9,10 @@ import { EMPTY_EMPLOYEE } from "./utils/constants"
 import { Employee } from "./utils/types"
 
 export function App() {
+  const [isNextPage, setIsNextPage] = useState(true)
   const { data: employees, ...employeeUtils } = useEmployees()
-  const { data: paginatedTransactions, ...paginatedTransactionsUtils } = usePaginatedTransactions()
+  const { data: paginatedTransactions, ...paginatedTransactionsUtils } =
+    usePaginatedTransactions(setIsNextPage)
   const { data: transactionsByEmployee, ...transactionsByEmployeeUtils } = useTransactionsByEmployee()
   const [isLoading, setIsLoading] = useState(false)
   const [isFiltered, setIsFiltered] = useState(false)
@@ -79,7 +81,7 @@ export function App() {
         <div className="RampGrid">
           <Transactions transactions={transactions} />
 
-          {transactions !== null && !isFiltered && (
+          {transactions !== null && isNextPage && !isFiltered && (
             <button
               className="RampButton"
               disabled={paginatedTransactionsUtils.loading}
